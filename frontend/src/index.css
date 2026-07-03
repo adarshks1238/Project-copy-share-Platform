@@ -142,6 +142,11 @@ textarea {
   font-family: inherit;
 }
 
+input,
+textarea {
+  color: var(--text-dark);
+}
+
 /* Layout Utilities */
 .app-container {
   display: flex;
