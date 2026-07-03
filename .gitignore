@@ -1,11 +1,10 @@
-# Environment variables file containing sensitive credentials
+
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# IDE/System files
 .idea/
 .vscode/
 *.suo

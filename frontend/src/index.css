@@ -25,6 +25,11 @@
   --text-medium: #546251;
   --text-light: #8C9C87;
 
+  --btn-primary-bg: #404E3B; /* Forest Green for great contrast and elegance */
+  --btn-primary-hover: #313D2D;
+  --btn-primary-text: #ffffff;
+  --btn-primary-shadow: rgba(64, 78, 59, 0.25);
+
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.02), 0 1px 2px rgba(0, 0, 0, 0.03);
   --shadow-md: 0 4px 12px rgba(64, 78, 59, 0.06), 0 2px 4px rgba(0, 0, 0, 0.02);
   --shadow-lg: 0 12px 24px rgba(64, 78, 59, 0.12), 0 4px 8px rgba(0, 0, 0, 0.02);
@@ -63,6 +68,11 @@ html[data-theme='dark'] {
   --text-dark: #ECEFEA; /* Light grey-green text */
   --text-medium: #BAC8B1;
   --text-light: #7A8976;
+
+  --btn-primary-bg: #BAC8B1; /* Light moss green */
+  --btn-primary-hover: #CAD8C1; /* Lighter moss green on hover */
+  --btn-primary-text: #121711; /* Dark charcoal green for crisp readability */
+  --btn-primary-shadow: rgba(0, 0, 0, 0.3);
 
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -219,15 +229,15 @@ textarea {
 }
 
 .btn-primary {
-  background-color: var(--yellow-500);
-  color: var(--text-dark);
-  box-shadow: 0 4px 6px -1px rgba(243, 208, 96, 0.2), 0 2px 4px -1px rgba(243, 208, 96, 0.1);
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 4px 6px -1px var(--btn-primary-shadow), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:hover {
-  background-color: var(--yellow-600);
+  background-color: var(--btn-primary-hover);
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(243, 208, 96, 0.3), 0 4px 6px -2px rgba(243, 208, 96, 0.1);
+  box-shadow: 0 10px 15px -3px var(--btn-primary-shadow), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-primary:active {
