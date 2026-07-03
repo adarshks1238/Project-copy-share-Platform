@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import Dashboard from './components/Dashboard';
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000/api";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
