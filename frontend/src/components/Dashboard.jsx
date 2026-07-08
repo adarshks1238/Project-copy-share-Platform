@@ -157,13 +157,28 @@ function Dashboard({ token, apiBase, showToast }) {
   };
 
   // Copy clip content to local clipboard
-  const handleCopyToClipboard = (id, content) => {
+  const handleCopyToClipboard = async (id, content) => {
     navigator.clipboard.writeText(content);
     setCopiedClipId(id);
     showToast('Copied to device clipboard!');
     setTimeout(() => {
       setCopiedClipId(null);
     }, 2000);
+
+    try {
+      const response = await fetch(`${apiBase}/clips/${id}/copied`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (response.ok) {
+        const updatedClip = await response.json();
+        setClips(prevClips => prevClips.map(clip => clip.id === id ? updatedClip : clip));
+      }
+    } catch (err) {
+      console.error('Failed to increment copy count:', err);
+    }
   };
 
   // Format date nicely
@@ -391,6 +406,11 @@ function Dashboard({ token, apiBase, showToast }) {
                       <span>{clip.deviceInfo || 'Unknown Device'}</span>
                     </span>
                     
+                    <span className="clip-meta-item" title="Times copied to clipboard">
+                      <Copy size={12} />
+                      <span>{clip.copyCount || 0} {clip.copyCount === 1 ? 'copy' : 'copies'}</span>
+                    </span>
+
                     <span className="clip-meta-item">
                       <Calendar size={12} />
                       <span>{formatDate(clip.createdAt)}</span>

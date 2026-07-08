@@ -40,6 +40,8 @@
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
+  --toast-text: #ffffff;
+  --toast-icon: var(--yellow-500);
 }
 
 /* Dark Mode Theme */
@@ -77,6 +79,8 @@ html[data-theme='dark'] {
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --toast-text: #121711;
+  --toast-icon: #121711;
 }
 
 * {
@@ -859,7 +863,7 @@ textarea {
 
 .toast {
   background: var(--text-dark);
-  color: white;
+  color: var(--toast-text);
   padding: 0.6rem 1.2rem;
   border-radius: 100px;
   font-size: 0.875rem;
@@ -873,7 +877,7 @@ textarea {
 }
 
 .toast-icon {
-  color: var(--yellow-500);
+  color: var(--toast-icon);
 }
 
 @keyframes slide-up-fade {

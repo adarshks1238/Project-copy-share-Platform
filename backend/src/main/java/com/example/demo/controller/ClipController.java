@@ -75,4 +75,24 @@ public class ClipController {
         clipRepository.delete(clip);
         return ResponseEntity.ok("Clip deleted successfully");
     }
+
+    @PostMapping("/{id}/copied")
+    public ResponseEntity<?> incrementCopyCount(@PathVariable String id, Principal principal) {
+        if (principal == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
+        }
+        User user = userRepository.findByUsername(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        Clip clip = clipRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Clip not found"));
+
+        if (!clip.getUserId().equals(user.getId())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("You do not have permission to modify this clip");
+        }
+
+        clip.setCopyCount(clip.getCopyCount() + 1);
+        Clip updatedClip = clipRepository.save(clip);
+        return ResponseEntity.ok(updatedClip);
+    }
 }

@@ -30,5 +30,8 @@ public class Clip {
 
     private String deviceInfo;
 
+    @Builder.Default
+    private int copyCount = 0;
+
     private Instant createdAt;
 }
